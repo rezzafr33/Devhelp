@@ -25,37 +25,6 @@ def get_settings():
     return sublime.load_settings('Devhelp.sublime-settings')
 
 
-def selection(view):
-
-    def IsNotNull(value):
-        return value is not None and len(value) > 1
-
-    def badChars(sel):
-        bad_characters = [
-            '/', '\\', ':', '\n', '{', '}', '(', ')',
-            '<', '>', '[', ']', '|', '?', '*', ' ',
-            '""', "'",
-        ]
-        for letter in bad_characters:
-            sel = sel.replace(letter, '')
-        return sel
-
-    selection = ''
-    for region in view.sel():
-        selection += badChars(view.substr(region))
-    if IsNotNull(selection):
-        return selection
-    else:
-        curr_sel = view.sel()[0]
-        word = view.word(curr_sel)
-        selection = badChars(view.substr(word))
-        if IsNotNull(selection):
-            return selection
-        else:
-            return None
-    return None
-
-
 def open_devhelp(text):
     devhelp_exe = get_settings().get('devhelp_command')
 
@@ -73,27 +42,31 @@ def open_devhelp(text):
 
 
 class DevhelpSearchSelectionCommand(sublime_plugin.TextCommand):
+    """
+    Search the selected text or the current word
+    """
+    def run(self, edit):
 
-    def no_word_selected(self):
-        sublime.status_message('No word was selected.')
+        querys = []
+        for region in self.view.sel():
+            if region.empty():
+                # if we have no selection grab the current word
+                word = self.view.word(region)
+                if not word.empty():
+                    querys.append(self.view.substr(word))
+            else:
+                # append the selection
+                if not region.empty():
+                    querys.append(self.view.substr(region))
 
-    def run(self, edit, **kwargs):
-        # global language
-        # language = get_language(self.view.window().active_view())
-        text = ""
 
-        for selection in self.view.sel():
-            if selection.empty():
-                text = self.view.word(selection)
-
-            text = self.view.substr(selection)
-
-            if text is None:
-                self.no_word_selected()
-            if text:
-                if len(kwargs) != 0:
-                    self.selected_item = kwargs['title']
-                    open_devhelp(items[self.selected_item]['devhelp_lang'], text, False)
+        if len(querys) != 0:
+            selection = " ".join(querys)
+            print(selection)
+            open_devhelp(selection)
+        else:
+            sublime.status_message(" Nothing to search !")
+            print("Devhelp: Nothing to search !")
 
 
 class DevhelpSearchCommand(sublime_plugin.TextCommand):
@@ -111,7 +84,7 @@ class DevhelpSearchCommand(sublime_plugin.TextCommand):
             sublime.status_message("No text was entered")
             return
         else:
-            open_devhelp("", text, True)
+            open_devhelp(text)
 
     def on_change(self, text):
         if text.strip() == "":
