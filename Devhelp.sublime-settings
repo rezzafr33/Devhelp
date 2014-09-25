@@ -1,0 +1,8 @@
+{
+  /**
+   *  Devhelp executable path.
+   *  For Linux: /usr/bin/devhelp
+   *  For Windows: c:\\Program Files\\Devhelp\\devhelp.exe
+   */
+  "devhelp_command": "/usr/bin/devhelp"
+}

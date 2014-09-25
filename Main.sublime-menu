@@ -12,25 +12,25 @@
         "children":
         [
           {
-            "caption": "Zeal",
+            "caption": "Devhelp",
             "children":
             [
               {
                 "caption": "Settings - Default",
-                "command": "open_file", "args": {"file": "${packages}/Zeal/Zeal.sublime-settings"}
+                "command": "open_file", "args": {"file": "${packages}/Devhelp/Devhelp.sublime-settings"}
               },
               {
                 "caption": "Settings - User",
-                "command": "open_file", "args": {"file": "${packages}/User/Zeal.sublime-settings"}
+                "command": "open_file", "args": {"file": "${packages}/User/Devhelp.sublime-settings"}
               },
               { "caption": "-" },
               {
                 "caption": "Key Bindings – Default",
-                "command": "open_file", "args": {"file": "${packages}/Zeal/Default (Windows).sublime-keymap", "platform": "Windows" }
+                "command": "open_file", "args": {"file": "${packages}/Devhelp/Default (Windows).sublime-keymap", "platform": "Windows" }
               },
               {
                 "caption": "Key Bindings – Default",
-                "command": "open_file", "args": {"file": "${packages}/Zeal/Default (Linux).sublime-keymap", "platform": "Linux" }
+                "command": "open_file", "args": {"file": "${packages}/Devhelp/Default (Linux).sublime-keymap", "platform": "Linux" }
               },
               {
                 "caption": "Key Bindings – User",

@@ -1,4 +1,4 @@
 [
     { "caption": "-"},
-    { "command": "zeal_search_selection", "caption": "Search Zeal" }
+    { "command": "devhelp_search_selection", "caption": "Search Devhelp" }
 ]
