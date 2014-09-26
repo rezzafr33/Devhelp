@@ -18,7 +18,7 @@ Go to your Sublime Text 2 `Packages` directory and clone the repository using th
 
 ## Usage
 
-`F1` - Open Devhelp documentation for current/selected word.
+`F2` - Open Devhelp documentation for current/selected word.
 
 `Shift` + `F2` - Open Devhelp search bar.
 
